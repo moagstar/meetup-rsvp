@@ -6,7 +6,12 @@ with open('.key') as f:
 
 
 with open('groups') as f:
-    for group in f:
+    GROUPS = f.readlines()
+
+
+def auto_rsvp():
+    for group in GROUPS:
+
         if not group.startswith('#'):
 
             events = requests.get(
@@ -28,3 +33,6 @@ with open('groups') as f:
                     f'&rsvp=yes'
                 ).json()
                 print(response)
+
+
+auto_rsvp()
